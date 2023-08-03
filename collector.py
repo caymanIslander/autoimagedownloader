@@ -51,10 +51,13 @@ def remove_duplicates(directory):
                 # Add the hash to the dictionary
                 image_hashes[image_hash] = filename
 
-
-
 def createdir(destination):
-
+    if not os.path.exists(destination):
+        os.makedirs(destination)
+        print(f"Created directory: {destination}")
+    else:
+        print(f"Directory '{destination}' already exists.")
+    
 
 def welcome():
     destination = input("Choose destination directory:")
@@ -64,7 +67,9 @@ def welcome():
     while i != 1 :
         choice = input(f"You will search for {user_query}, it will be also your folder name under {destination} \n Y/n \n")
         if choice == "Y" or choice == "y":
-            i += 1
+            i = 1
             createdir(destination)
-        if choice == "N" or choice == "n":
             downloadimg(query_str= user_query, limit_int= limit_int, destination= destination)
+
+        elif choice == "N" or choice == "n":
+            welcome()
