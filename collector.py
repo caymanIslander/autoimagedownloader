@@ -2,6 +2,7 @@ import os
 from PIL import Image
 import hashlib
 from bing_image_downloader import downloader
+import keyboard
 
 def downloadimg(query_str,limit_int,destination):
     downloader.download(query_str, limit_int, output_dir= destination)
@@ -60,6 +61,8 @@ def createdir(destination):
     
 
 def welcome():
+    print("Welcome to AutoImageDownloader.")
+        
     destination = input("Choose destination directory:")
     user_query = input("Image you want to search:")
     limit_int = int(input("How many images do you want to search:"))
@@ -70,6 +73,8 @@ def welcome():
             i = 1
             createdir(destination)
             downloadimg(query_str= user_query, limit_int= limit_int, destination= destination)
-
         elif choice == "N" or choice == "n":
+            print("You chose 'N'")
             welcome()
+
+welcome()
